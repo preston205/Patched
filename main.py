@@ -1,14 +1,19 @@
 from lat_long_adder import lat_long
 from heat_map import create_heatmap
+import pandas as pd
 
 def main():
-    filepath = 'data.csv'
+    loc = pd.read_csv('data/Locals.csv')
+    filepath = 'data/data.csv'
 
-    looking_for = 'Indie Pop'
+    looking_for = input("What genre are you looking for? ")
 
-    map_center = [40.758701, -111.876183]
+    map_center = 40.758701,-111.876183
 
-    weight_threshold = 50
+
+
+
+    weight_threshold = int(input("What weight threshold would you like to apply? "))
 
     # Load geographic data
     df = lat_long(filepath, looking_for)

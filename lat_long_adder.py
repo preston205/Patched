@@ -2,10 +2,10 @@ import pandas as pd
 import random
 
 def lat_long(filepath,search_for):
-# Replace 'example.csv' with your CSV file path
+# 
     df = pd.read_csv(filepath)
-    Loc = pd.read_csv('Locals.csv')
-    genre_matrix = pd.read_csv('genre_matrix.csv')
+    Loc = pd.read_csv('data/Locals.csv')
+    genre_matrix = pd.read_csv('data/genre_matrix.csv')
 
     df['latitude'] = None
     df['longitude'] = None
@@ -31,11 +31,7 @@ def lat_long(filepath,search_for):
 
         df.at[idx, 'weight'] = wgt_total
         
-        #if search_for == df.at[idx, 'Primary Genre']:# check if the value in primary genre is searched
-        #    df.at[idx, 'weight'] = 'yup' # add value to sheet
-        # else if the value is in secondary genre
-        # add adjusted value to sheet
-        # else if the value is the tertiary genre, adjust accordingly 
+
         match = Loc[Loc['City'] == row['location']]
         if not match.empty:
             df.at[idx, 'latitude'] = match.iloc[0]['latitude'] + (random.randint(-10,10) * 0.001)

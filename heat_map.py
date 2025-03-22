@@ -1,13 +1,13 @@
 import folium
 from folium.plugins import HeatMap
 
-def create_heatmap(df, map_center, weight_threshold, zoom_start=13, output_file='heatmap.html'):
+def create_heatmap(df, map_center, weight_threshold, zoom_start=15, output_file='heatmap.html'):
     """
     Creates and saves an interactive heatmap using Folium.
     """
     
     # Initialize the map centered around provided coordinates
-    fmap = folium.Map(location=map_center, zoom_start=15, tiles = 'CartoDB positron' )
+    fmap = folium.Map(location=map_center, zoom_start=8, tiles = 'CartoDB positron' )
 
 
 
