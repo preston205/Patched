@@ -1,27 +1,42 @@
-from lat_long_adder import lat_long
-from heat_map import create_heatmap
-import pandas as pd
+﻿from __future__ import annotations
 
-def main():
-    
-    filepath = 'data/data.csv'
+from pathlib import Path
 
-    looking_for = input("What genre are you looking for? ")
-
-    map_center = 40.758701,-111.876183
-
-
+from patched import (
+    DATA_PROCESSED_DIR,
+    DATA_RAW_DIR,
+    WEB_OUTPUTS_DIR,
+    create_heatmap,
+    lat_long,
+)
 
 
-    weight_threshold = int(input("What weight threshold would you like to apply? "))
+def main() -> None:
+    artist_data = DATA_RAW_DIR / 'data.csv'
+    locals_data = DATA_RAW_DIR / 'Locals.csv'
+    genre_matrix = DATA_RAW_DIR / 'genre_matrix.csv'
 
-    # Load geographic data
-    df = lat_long(filepath, looking_for)
+    looking_for = input('What genre are you looking for? ')
+    map_center = (40.758701, -111.876183)
+    weight_threshold = int(input('What weight threshold would you like to apply? '))
 
-    # Generate Folium heatmap visualization
-    create_heatmap(df, map_center, weight_threshold)
+    df = lat_long(
+        artist_data,
+        looking_for,
+        locals_file=locals_data,
+        genre_matrix_file=genre_matrix,
+        output_path=DATA_PROCESSED_DIR / 'updated_data.csv',
+    )
 
-    print("✅ Heatmap saved as 'heatmap.html'.")
+    output_path = create_heatmap(
+        df,
+        map_center,
+        weight_threshold,
+        output_file=WEB_OUTPUTS_DIR / 'heatmap.html',
+    )
+
+    print(f'Heatmap saved to {output_path}')
+
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patched | Connecting Local Artists & Venues</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0b1f3b 0%, #1f5a82 50%, #2ab6a6 100%);
+            --surface: rgba(8, 19, 35, 0.72);
+            --accent: #ffb347;
+            --text-primary: #f1f7ff;
+            --text-muted: rgba(241, 247, 255, 0.75);
+            --max-width: 1100px;
+            --radius-lg: 26px;
+            --radius-md: 16px;
+            --shadow: 0 22px 55px rgba(6, 17, 32, 0.35);
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 32px 28px 0;
+        }
+
+        .nav-wrapper {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .cta-outline {
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 28px 80px;
+            flex: 1;
+            display: grid;
+            gap: 48px;
+        }
+
+        .hero {
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            align-items: center;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            padding: 46px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card h1 {
+            margin: 0 0 18px;
+            font-size: clamp(2.6rem, 4vw, 3.6rem);
+            line-height: 1.05;
+        }
+
+        .hero-card p {
+            margin: 0 0 26px;
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #0b1f3b;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            box-shadow: 0 18px 32px rgba(255, 179, 71, 0.25);
+        }
+
+        .hero-stats {
+            display: grid;
+            gap: 16px;
+            color: var(--text-muted);
+        }
+
+        .hero-stats strong {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--text-primary);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .journey {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow);
+        }
+
+        .journey ol {
+            padding-left: 20px;
+            margin: 0;
+            display: grid;
+            gap: 14px;
+            color: var(--text-muted);
+        }
+
+        .journey li {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        footer {
+            padding: 36px 28px 48px;
+            background: rgba(8, 19, 35, 0.85);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-content strong {
+            color: var(--text-primary);
+            letter-spacing: 0.12em;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 24px;
+            }
+
+            .nav-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .cta-outline {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="brand">
+                <span class="brand-badge">PT</span>
+                <span>Patched</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#artists">Artists</a>
+                <a href="#venues">Venues</a>
+                <a href="#journey">How It Works</a>
+                <a href="#join">Join</a>
+            </nav>
+            <a class="cta-outline" href="#join">Sign In</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-card">
+                <h1>Patch the gap between local artists and the stages they deserve.</h1>
+                <p>Patched brings together the talent, the venues, and the community. Discover fresh voices, book unforgettable shows, and grow a creative ecosystem where everyone wins.</p>
+                <a class="cta-primary" href="#join">Start Building Your Next Lineup</a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <strong>120+</strong>
+                    emerging artists ready to be booked in your city.
+                </div>
+                <div>
+                    <strong>45</strong>
+                    partner venues curating weekly discovery nights.
+                </div>
+                <div>
+                    <strong>98%</strong>
+                    of hosts find new acts within their first week on Patched.
+                </div>
+            </div>
+        </section>
+
+        <section id="artists" class="card-grid">
+            <article class="card">
+                <h3>For Artists</h3>
+                <p>Build a rich profile, share tracks and reels, and get matched with venues that fit your sound, vibe, and draw.</p>
+            </article>
+            <article class="card" id="venues">
+                <h3>For Venues</h3>
+                <p>Filter by genre, availability, and audience size to build a lineup that keeps your calendar filled.</p>
+            </article>
+            <article class="card">
+                <h3>For Communities</h3>
+                <p>Support the local scene through curated spotlights, collaboration grants, and neighborhood showcases.</p>
+            </article>
+        </section>
+
+        <section id="journey" class="journey">
+            <h2>How the Patched journey unfolds</h2>
+            <ol>
+                <li>Create a Patched profile and set your availability, whether you are an artist or a venue.</li>
+                <li>Patched intelligence matches artists with venues based on genre fit, schedule, and goals.</li>
+                <li>Collaborate on setlists, marketing assets, and ticketing tools from one shared dashboard.</li>
+                <li>Go live, gather feedback, and keep momentum with post-show insights and repeat bookings.</li>
+            </ol>
+        </section>
+
+        <section id="join" class="card-grid">
+            <article class="card">
+                <h3>Artists — get discovered</h3>
+                <p>Join with a media kit, set your terms, and land gigs that grow your audience. Showcase what makes your sound unique.</p>
+            </article>
+            <article class="card">
+                <h3>Venues — curate with ease</h3>
+                <p>Transform empty slots into unforgettable nights. Access rider details, promotional materials, and fan insights instantly.</p>
+            </article>
+            <article class="card">
+                <h3>Promoters — stay in the loop</h3>
+                <p>Follow upcoming releases, drop calendar holds, and collaborate on multi-venue events without the back-and-forth.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <strong>Patched</strong><br>
+                Connecting the local scene since 2025.
+            </div>
+            <div>
+                <strong>Contact</strong><br>
+                hello@patched.fm
+            </div>
+            <div>
+                <strong>Stay in tune</strong><br>
+                Follow us for showcases, release drops, and booking tips.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
