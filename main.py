@@ -3,7 +3,7 @@ from heat_map import create_heatmap
 import pandas as pd
 
 def main():
-    loc = pd.read_csv('data/Locals.csv')
+    
     filepath = 'data/data.csv'
 
     looking_for = input("What genre are you looking for? ")
